@@ -20,17 +20,41 @@ const ReachUsSection = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      saveInfo: false
-    });
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        }),
+      });
+  
+      const result = await response.json();
+  
+      if (result.success) {
+        alert("Thank you! Your message has been sent.");
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          saveInfo: false
+        });
+      } else {
+        alert("Failed to send your message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error sending contact message:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
+  
 
   return (
     <div className="max-w-6xl mx-auto p-0 bg-white">

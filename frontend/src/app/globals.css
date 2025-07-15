@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Removed invalid import statement */
+
 
 :root {
   --background: #ffffff;
@@ -89,4 +91,20 @@ body {
 
 .animate-shine {
   animation: shine 1.2s ease-out forwards;
+}
+
+.editor-paragraph {
+  padding: 0.5rem 0;
+}
+.editor-text {
+  color: #1f2937;
+}
+.editor-heading-h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.editor-quote {
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+  color: #666;
 }
